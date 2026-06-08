@@ -96,3 +96,4 @@ https://thiter.github.io/my-calendar/todo.ics
 
 1. **隐私隔离**：您的核心笔记和未带日期/未带 `📅` `🛫` 标志的日历信息安全地保留在您的私有仓库 `testnote` 中。公开的 `my-calendar` 仅暴露生成的任务标题、MD5 混淆加密的 UID 以及时间数据。
 2. **零扣费保护**：本账户的 GitHub Actions 预算及按量付费已被完全限制（已在 `Budgets and alerts` 中设置了 **$0.00 budget** 并开启了 **Stop usage: Yes**）。Actions 在免费的 2,000 分钟用尽后将自动暂停，**绝不会产生任何信用卡扣款**。
+3. **智能构建触发优化（防额度浪费）**：在 `testnote` 仓库的 `sync-to-calendar.yml` 工作流中，配置了细粒度的路径限制（`paths` filter）。现在，只有当 `todo/` 或 `obsidian/日历/` 目录发生变动时，或者手动通过 `workflow_dispatch` 触发时，才会执行日历同步流水线。这极大避免了日常非待办笔记修改所导致的不必要 Actions 虚拟资源消耗，解决了短时间内海量构建冲突和通知轰炸的问题。
